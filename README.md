@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حضور و غیاب - گروه شهید ابراهیم هادی</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+    body {
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      transition: background 0.4s;
+    }
+    .container {
+      max-width: 780px;
+      width: 100%;
+      background: #fff;
+      border-radius: 40px;
+      padding: 28px 24px 35px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+      transition: 0.3s;
+    }
+
+    /* ===== تم‌ها ===== */
+    .theme-default { --primary: #1e5f7a; --primary-light: #e3f0fa; --accent: #b68b6b; --bg: #fff; --card-bg: #fafcff; --text: #1a3343; --border: #eaf1f9; --delay-bg: #fff3e0; --delay-color: #b87a2b; --delay-border: #f0dcc0; --rank-bg: #f0f7fa; }
+    .theme-ocean { --primary: #0b4f6c; --primary-light: #d7ecf5; --accent: #4a9bb5; --bg: #f2f9fc; --card-bg: #ffffff; --text: #0d2c3a; --border: #cde1ec; --delay-bg: #e8f4f8; --delay-color: #0b6b7a; --delay-border: #c0dce8; --rank-bg: #e4f0f5; }
+    .theme-forest { --primary: #2d6a4f; --primary-light: #d8f0e5; --accent: #52b788; --bg: #f2faf5; --card-bg: #ffffff; --text: #1b3a2c; --border: #cde8db; --delay-bg: #e6f5ec; --delay-color: #1d6b4a; --delay-border: #c8e0d4; --rank-bg: #e4f5ec; }
+    .theme-sunset { --primary: #b13e3e; --primary-light: #fce4e4; --accent: #e07c5e; --bg: #fdf6f2; --card-bg: #ffffff; --text: #4a2c1e; --border: #f0dcd4; --delay-bg: #fceee8; --delay-color: #b86a3a; --delay-border: #f0d4c8; --rank-bg: #f5ece8; }
+    .theme-lavender { --primary: #6b4c7a; --primary-light: #ede3f5; --accent: #b48bc7; --bg: #f8f4fc; --card-bg: #ffffff; --text: #342a3d; --border: #e0d4ea; --delay-bg: #f0e8f5; --delay-color: #7a4a8a; --delay-border: #e0d0ec; --rank-bg: #f0e8f5; }
+    .theme-mint { --primary: #2d8f7a; --primary-light: #ddf0ea; --accent: #6bb5a0; --bg: #f4fbf9; --card-bg: #ffffff; --text: #1b3f36; --border: #cde8e0; --delay-bg: #e4f5ee; --delay-color: #1a7a62; --delay-border: #c8e8dc; --rank-bg: #e4f5ee; }
+    .theme-rose { --primary: #b13e6b; --primary-light: #fce4ee; --accent: #d97096; --bg: #fdf4f8; --card-bg: #ffffff; --text: #471f31; --border: #f0d4e0; --delay-bg: #fce8f0; --delay-color: #b84a6a; --delay-border: #f0d0dc; --rank-bg: #f5e8f0; }
+    .theme-sky { --primary: #2a7a9c; --primary-light: #d7ecf9; --accent: #5faac9; --bg: #f2f9fe; --card-bg: #ffffff; --text: #15303f; --border: #cde2f0; --delay-bg: #e4f0f8; --delay-color: #1a7a8a; --delay-border: #c8dcec; --rank-bg: #e4f0f8; }
+    .theme-coral { --primary: #c05c4a; --primary-light: #f5e4e0; --accent: #e0856e; --bg: #fdf6f3; --card-bg: #ffffff; --text: #45221a; --border: #eddad4; --delay-bg: #f5ece8; --delay-color: #b85a3a; --delay-border: #ecd4cc; --rank-bg: #f5ece8; }
+    .theme-gold { --primary: #a67c3b; --primary-light: #f5ede0; --accent: #c9a86c; --bg: #fdfbf7; --card-bg: #ffffff; --text: #3d2f16; --border: #ece0cc; --delay-bg: #f5efe4; --delay-color: #a67a2a; --delay-border: #e8dcc8; --rank-bg: #f5efe4; }
+
+    body.theme-default { background: #f0f2f5; }
+    body.theme-ocean { background: #dcecf5; }
+    body.theme-forest { background: #ddeee5; }
+    body.theme-sunset { background: #f5e8e0; }
+    body.theme-lavender { background: #f0e8f5; }
+    body.theme-mint { background: #ddf0ea; }
+    body.theme-rose { background: #f5e8ee; }
+    body.theme-sky { background: #dcecf5; }
+    body.theme-coral { background: #f5e8e3; }
+    body.theme-gold { background: #f5efe4; }
+
+    .container {
+      background: var(--bg, #fff);
+      color: var(--text, #1a3343);
+      border: 1px solid var(--border, #eaf1f9);
+    }
+    .status-bar { background: var(--primary-light, #e3f0fa); border-color: var(--border, #eaf1f9); }
+    .member-list { background: var(--card-bg, #fafcff); border-color: var(--border, #eaf1f9); }
+    .member-item { border-bottom-color: var(--border, #ecf3fa); }
+    .status-badge { background: var(--primary-light, #e3f0fa); color: var(--primary, #1e5f7a); }
+    .status-badge.absent { background: #f1dcdc; color: #8f3b3b; }
+    .btn-primary { background: var(--primary, #1e5f7a); color: #fff; }
+    .btn-primary:hover { filter: brightness(0.85); }
+    .admin-panel { background: var(--primary-light, #f3f8fe); border-color: var(--border, #dde8f2); }
+    .log-area { background: var(--card-bg, #f8fbfe); border-color: var(--border, #e4ecf5); }
+    .date-box { background: var(--primary-light, #eef3f8); border-color: var(--border, #d7e1ea); }
+    .btn-outline { border-color: var(--border, #cbdae7); }
+    .btn-outline:hover { background: var(--primary-light, #f2f8ff); }
+    .status-dot { background: #2b8c5e; }
+    .status-dot.inactive { background: #b13e3e; }
+    .status-dot.warning { background: #d9a13b; }
+
+    /* ===== لودینگ اصلی ===== */
+    .loading-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: #0b1a26;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.7s ease, visibility 0.7s;
+      opacity: 1;
+      visibility: visible;
+    }
+    .loading-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loading-overlay h2 {
+      color: #f0e6d3;
+      font-size: 32px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      margin-top: 30px;
+      border-top: 2px solid #b8946a;
+      padding-top: 20px;
+      text-shadow: 0 0 12px rgba(255,215,150,0.2);
+    }
+    .loader-ring {
+      width: 70px;
+      height: 70px;
+      border: 6px solid #2f4a5c;
+      border-top: 6px solid #dbb48b;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { 0% { transform: rotate(0); } 100% { transform: rotate(360deg); } }
+
+    /* ===== لودینگ دوم (قفل + رمز) با قابلیت از کار افتادن ===== */
+    .lock-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: #0b1a26;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      transition: opacity 0.7s ease, visibility 0.7s;
+      opacity: 0;
+      visibility: hidden;
+    }
+    .lock-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    /* حالت قفل شده (از کار افتاده) - صفحه سیاه می‌ماند */
+    .lock-overlay.locked {
+      opacity: 1;
+      visibility: visible;
+    }
+    .lock-overlay.locked .lock-icon,
+    .lock-overlay.locked h2,
+    .lock-overlay.locked .subtitle,
+    .lock-overlay.locked .lock-input-group,
+    .lock-overlay.locked .lock-timer {
+      display: none;
+    }
+    .lock-overlay.locked .lock-error {
+      color: #8a9aab;
+      font-size: 18px;
+      font-weight: 300;
+      margin-top: 0;
+      height: auto;
+    }
+    .lock-overlay .lock-icon {
+      font-size: 64px;
+      color: #dbb48b;
+      margin-bottom: 20px;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.7; }
+    }
+    .lock-overlay h2 {
+      color: #f0e6d3;
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .lock-overlay .subtitle {
+      color: #8a9aab;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .lock-overlay .lock-input-group {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      background: rgba(255,255,255,0.05);
+      padding: 8px 16px;
+      border-radius: 60px;
+      border: 1px solid #3a4a5a;
+    }
+    .lock-overlay .lock-input-group input {
+      background: transparent;
+      border: none;
+      color: #f0e6d3;
+      font-size: 18px;
+      padding: 10px 8px;
+      outline: none;
+      width: 200px;
+      text-align: center;
+      letter-spacing: 4px;
+    }
+    .lock-overlay .lock-input-group input::placeholder {
+      color: #5a6a7a;
+      letter-spacing: 1px;
+      font-size: 14px;
+    }
+    .lock-overlay .lock-input-group input:disabled {
+      opacity: 0.3;
+    }
+    .lock-overlay .lock-input-group button {
+      background: #dbb48b;
+      border: none;
+      color: #0b1a26;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .lock-overlay .lock-input-group button:hover {
+      background: #c9a07a;
+      transform: scale(1.02);
+    }
+    .lock-overlay .lock-input-group button:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .lock-overlay .lock-error {
+      color: #e07c5e;
+      font-size: 13px;
+      margin-top: 12px;
+      height: 20px;
+    }
+    .lock-overlay .lock-timer {
+      color: #8a9aab;
+      font-size: 13px;
+      margin-top: 16px;
+      font-weight: 300;
+    }
+    .lock-overlay .lock-timer span {
+      color: #dbb48b;
+      font-weight: 600;
+      font-size: 16px;
+    }
+    /* پیام از کار افتادن */
+    .lock-overlay .lock-failed-message {
+      display: none;
+      color: #e07c5e;
+      font-size: 20px;
+      font-weight: 300;
+      text-align: center;
+      line-height: 1.8;
+    }
+    .lock-overlay.locked .lock-failed-message {
+      display: block;
+    }
+
+    /* ===== بقیه استایل‌ها ===== */
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+    .header h1 { font-size: 24px; font-weight: 700; color: var(--text, #1e2f3a); display: flex; align-items: center; gap: 10px; }
+    .header h1 i { color: var(--accent, #b68b6b); }
+    .date-box { padding: 6px 16px; border-radius: 60px; font-size: 15px; font-weight: 500; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .date-box i { color: var(--accent, #b68b6b); cursor: pointer; transition: 0.2s; padding: 4px; }
+    .date-box i:hover { color: var(--primary, #1f4055); transform: scale(1.1); }
+    .date-box .date-input-group { display: flex; gap: 4px; align-items: center; }
+    .date-box .date-input-group select { padding: 4px 8px; border-radius: 30px; border: 1px solid var(--border, #d7e1ea); background: var(--bg, #fff); font-size: 14px; outline: none; cursor: pointer; color: var(--text, #1a3343); }
+    .date-box .date-input-group select:focus { border-color: var(--accent, #b68b6b); }
+    .date-nav-btn { background: none; border: none; font-size: 18px; cursor: pointer; color: var(--accent, #b68b6b); padding: 4px 8px; border-radius: 30px; transition: 0.2s; }
+    .date-nav-btn:hover { background: var(--primary-light, #e3f0fa); color: var(--primary, #1e5f7a); }
+
+    .status-bar { display: flex; align-items: center; gap: 16px; padding: 10px 18px; border-radius: 80px; margin: 10px 0 18px; border: 1px solid; flex-wrap: wrap; }
+    .status-dot { width: 16px; height: 16px; border-radius: 50%; box-shadow: 0 0 0 3px rgba(43,140,94,0.15); transition: 0.3s; flex-shrink: 0; }
+    .status-dot.inactive { box-shadow: 0 0 0 3px rgba(177,62,62,0.15); }
+    .status-dot.warning { box-shadow: 0 0 0 3px rgba(217,161,59,0.2); }
+    .status-text { font-weight: 500; font-size: 14px; }
+    .clock { margin-right: auto; font-weight: 300; font-size: 22px; letter-spacing: 2px; }
+
+    .member-list { margin: 20px 0 18px; border-radius: 28px; padding: 8px 4px; border: 1px solid; max-height: 340px; overflow-y: auto; }
+    .member-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid; transition: 0.2s; flex-wrap: wrap; gap: 6px; }
+    .member-item:last-child { border-bottom: none; }
+    .member-name { font-weight: 500; font-size: 17px; display: flex; align-items: center; gap: 10px; min-width: 120px; }
+    .member-name .edit-icon { color: var(--accent, #b68b6b); cursor: pointer; font-size: 15px; }
+    .member-name .edit-icon:hover { filter: brightness(0.7); }
+    .member-status { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .status-badge { padding: 4px 16px; border-radius: 40px; font-size: 14px; font-weight: 600; cursor: default; transition: 0.2s; border: 1px solid transparent; min-width: 60px; text-align: center; }
+    .status-badge.clickable { cursor: pointer; }
+    .status-badge.clickable:hover { opacity: 0.75; }
+
+    .delay-badge { background: var(--delay-bg, #fff3e0); color: var(--delay-color, #b87a2b); padding: 2px 12px; border-radius: 30px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--delay-border, #f0dcc0); cursor: default; min-width: 70px; justify-content: center; }
+    .delay-badge .delay-input { width: 55px; padding: 2px 4px; border-radius: 20px; border: 1px solid var(--delay-border, #d4b48a); background: #fff8f0; font-size: 13px; text-align: center; outline: none; display: none; }
+    .delay-badge .delay-input:focus { border-color: var(--primary, #1e5f7a); }
+    .delay-badge .delay-value { cursor: default; }
+    .delay-badge .delay-edit { cursor: pointer; font-size: 12px; color: var(--delay-color, #b87a2b); margin-right: 2px; }
+    .delay-badge .delay-edit:hover { filter: brightness(0.7); }
+    .delay-badge .has-delay { color: #b13e3e; animation: pulse-delay 1.5s infinite; }
+    @keyframes pulse-delay { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .delay-badge .no-delay { color: #2b8c5e; }
+
+    .member-remove { color: #b13e3e; cursor: pointer; font-size: 16px; opacity: 0.5; transition: 0.2s; padding: 0 4px; }
+    .member-remove:hover { opacity: 1; }
+
+    .btn-group { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0 12px; }
+    .btn { border: none; background: #e4ecf5; padding: 12px 22px; border-radius: 60px; font-weight: 600; font-size: 16px; color: var(--text, #1a3343); cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 8px; flex: 1 0 auto; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
+    .btn-danger { background: #b13e3e; color: #fff; box-shadow: 0 8px 18px rgba(177,62,62,0.12); }
+    .btn-danger:hover { background: #942f2f; }
+    .btn-warning { background: #d9a13b; color: #fff; }
+    .btn-warning:hover { background: #c08d2e; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-success { background: #2b8c5e; color: #fff; }
+    .btn-success:hover { background: #1f6d48; }
+    .btn-rank { background: #6b4c7a; color: #fff; }
+    .btn-rank:hover { background: #543a60; }
+    .btn-change-password { background: #d4a373; color: #fff; }
+    .btn-change-password:hover { background: #b8895a; }
+
+    .admin-panel { margin-top: 24px; padding: 16px 12px 20px; border-radius: 32px; border: 1px solid; display: none; }
+    .admin-panel.active { display: block; }
+    .admin-panel h3 { font-size: 18px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .admin-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; align-items: center; }
+    .admin-row input { flex: 1; padding: 12px 16px; border-radius: 60px; border: 1px solid var(--border, #d0dde9); background: #fff; font-size: 15px; outline: none; transition: 0.2s; min-width: 120px; }
+    .admin-row input:focus { border-color: var(--accent, #b68b6b); }
+    .admin-row .btn { flex: 0 1 auto; padding: 10px 22px; }
+
+    .rank-section { margin-top: 20px; padding: 16px; border-radius: 32px; background: var(--rank-bg, #f0f7fa); border: 1px solid var(--border, #eaf1f9); display: none; }
+    .rank-section.active { display: block; }
+    .rank-section h3 { font-size: 18px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; color: var(--text, #1a3343); }
+    .rank-section h3 i { color: #f5b342; }
+    .rank-list { max-height: 250px; overflow-y: auto; }
+    .rank-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-bottom: 1px solid var(--border, #dde8f2); font-size: 15px; }
+    .rank-item:last-child { border-bottom: none; }
+    .rank-item .rank-number { font-weight: 700; color: var(--primary, #1e5f7a); min-width: 30px; }
+    .rank-item .rank-name { flex: 1; margin: 0 10px; font-weight: 500; }
+    .rank-item .rank-count { background: var(--primary-light, #e3f0fa); padding: 2px 14px; border-radius: 30px; font-weight: 600; font-size: 14px; color: var(--primary, #1e5f7a); }
+
+    .rank-visibility-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+      padding: 8px 12px;
+      background: var(--primary-light, #e3f0fa);
+      border-radius: 40px;
+      font-size: 14px;
+    }
+    .rank-visibility-toggle .toggle-label {
+      color: var(--text, #1a3343);
+      font-weight: 500;
+    }
+    .rank-visibility-toggle .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      background: #b0c4d8;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      flex-shrink: 0;
+    }
+    .rank-visibility-toggle .toggle-switch.active {
+      background: var(--primary, #1e5f7a);
+    }
+    .rank-visibility-toggle .toggle-switch .toggle-knob {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      transition: 0.3s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .rank-visibility-toggle .toggle-switch.active .toggle-knob {
+      left: 22px;
+    }
+    .rank-visibility-toggle .toggle-status {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text, #1a3343);
+      min-width: 50px;
+    }
+
+    .theme-selector { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 6px; justify-content: center; }
+    .theme-dot { width: 32px; height: 32px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+    .theme-dot:hover { transform: scale(1.1); border-color: #888; }
+    .theme-dot.active { border-color: #222; box-shadow: 0 0 0 2px #fff, 0 0 0 4px #222; }
+
+    .secret-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.45); backdrop-filter: blur(6px); display: none; justify-content: center; align-items: center; z-index: 999; }
+    .secret-modal.show { display: flex; }
+    .secret-box { background: #fff; max-width: 400px; width: 100%; padding: 40px 28px 34px; border-radius: 48px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
+    .secret-box h2 { color: #1e2f3a; margin-bottom: 20px; font-weight: 500; }
+    .secret-box input { width: 100%; padding: 14px 18px; margin: 8px 0; border-radius: 60px; border: 1px solid #d7e1ea; font-size: 16px; outline: none; }
+    .secret-box input:focus { border-color: #b68b6b; }
+    .secret-box .btn { width: 100%; margin-top: 10px; }
+    .auto-login-info { font-size: 12px; color: #8a9aab; margin-top: 4px; background: #f5f8fa; padding: 6px 12px; border-radius: 30px; display: inline-block; }
+
+    .password-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.45); backdrop-filter: blur(6px); display: none; justify-content: center; align-items: center; z-index: 1000; }
+    .password-modal.show { display: flex; }
+    .password-box { background: #fff; max-width: 400px; width: 100%; padding: 40px 28px 34px; border-radius: 48px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
+    .password-box h2 { color: #1e2f3a; margin-bottom: 10px; font-weight: 500; }
+    .password-box .subtitle { color: #6d8ba0; font-size: 14px; margin-bottom: 20px; }
+    .password-box input { width: 100%; padding: 14px 18px; margin: 8px 0; border-radius: 60px; border: 1px solid #d7e1ea; font-size: 16px; outline: none; }
+    .password-box input:focus { border-color: #b68b6b; }
+    .password-box .btn { width: 100%; margin-top: 10px; }
+    .password-box .btn-secondary { background: #e4ecf5; color: var(--text, #1a3343); }
+    .password-box .btn-secondary:hover { background: #d0dce8; }
+
+    .log-area { border-radius: 28px; padding: 14px 14px 4px; margin-top: 18px; border: 1px solid; }
+    .log-entry { display: flex; justify-content: space-between; padding: 8px 4px; border-bottom: 1px solid var(--border, #eaf0f6); font-size: 14px; }
+    .log-entry:last-child { border-bottom: none; }
+    .text-muted { color: #6d8ba0; font-size: 14px; }
+    .admin-badge { background: #d4a373; color: #fff; font-size: 11px; padding: 2px 10px; border-radius: 30px; margin-right: 6px; }
+    .delay-status-icon.has-delay { color: #b13e3e; animation: pulse-delay 1.5s infinite; }
+    .delay-status-icon.no-delay { color: #2b8c5e; }
+
+    @media (max-width: 480px) {
+      .container { padding: 20px 14px 25px; }
+      .header h1 { font-size: 20px; }
+      .clock { font-size: 18px; }
+      .btn { font-size: 14px; padding: 10px 14px; }
+      .member-item { flex-direction: column; align-items: stretch; }
+      .member-status { justify-content: space-between; }
+      .date-box { flex-direction: column; align-items: center; }
+      .date-box .date-input-group select { font-size: 12px; padding: 2px 6px; }
+      .lock-overlay .lock-input-group input { width: 140px; font-size: 16px; }
+    }
+  </style>
+</head>
+<body class="theme-default">
+
+<!-- ===== لودینگ اول ===== -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loader-ring"></div>
+  <h2>گروه شهید ابراهیم هادی</h2>
+</div>
+
+<!-- ===== لودینگ دوم (قفل + رمز ۳ رقمی ۱ تا ۱۰) ===== -->
+<div class="lock-overlay" id="lockOverlay">
+  <div class="lock-icon"><i class="fas fa-lock"></i></div>
+  <h2>ورود به سیستم</h2>
+  <div class="subtitle">رمز عبور (۳ رقم ۱ تا ۱۰) را وارد کنید</div>
+  <div class="lock-input-group">
+    <input type="password" id="lockPassword" placeholder="مثلاً ۱۲۳" maxlength="3" inputmode="numeric">
+    <button id="lockSubmitBtn">ورود</button>
+  </div>
+  <div class="lock-error" id="lockError"></div>
+  <div class="lock-timer" id="lockTimer">⏱ زمان باقی‌مانده: <span id="timerDisplay">01:00</span></div>
+  <div class="lock-failed-message" id="lockFailedMessage">
+    <i class="fas fa-times-circle" style="font-size:48px; color:#e07c5e; margin-bottom:16px; display:block;"></i>
+    <div>⛔ دسترسی غیرمجاز</div>
+    <div style="font-size:14px; color:#8a9aab; margin-top:8px;">صفحه قفل شد</div>
+  </div>
+</div>
+
+<!-- ===== مودال مخفی ادمین ===== -->
+<div class="secret-modal" id="secretModal">
+  <div class="secret-box">
+    <h2><i class="fas fa-lock" style="color:#b68b6b;"></i> ورود ادمین</h2>
+    <input type="text" id="adminUser" placeholder="نام کاربری" value="">
+    <input type="password" id="adminPass" placeholder="رمز عبور" value="">
+    <button class="btn btn-primary" id="secretLoginBtn">ورود به پنل</button>
+    <div class="auto-login-info" id="loginInfo">
+      <i class="fas fa-info-circle"></i> نام کاربری: <strong>admin</strong> | رمز: <strong id="currentPassDisplay">1234</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ===== مودال تغییر رمز ===== -->
+<div class="password-modal" id="passwordModal">
+  <div class="password-box">
+    <h2><i class="fas fa-key" style="color:#b68b6b;"></i> تغییر رمز عبور</h2>
+    <div class="subtitle">رمز عبور جدید را وارد کنید</div>
+    <input type="password" id="newPassword" placeholder="رمز عبور جدید" value="">
+    <input type="password" id="confirmPassword" placeholder="تکرار رمز عبور" value="">
+    <button class="btn btn-primary" id="savePasswordBtn">ذخیره رمز جدید</button>
+    <button class="btn btn-secondary" id="cancelPasswordBtn">انصراف</button>
+  </div>
+</div>
+
+<div class="container" id="appContainer" style="display:none;">
+  <!-- هدر -->
+  <div class="header">
+    <h1><i class="fas fa-users"></i> حضور و غیاب</h1>
+    <div class="date-box">
+      <button class="date-nav-btn" id="datePrevYear"><i class="fas fa-chevron-double-right"></i></button>
+      <button class="date-nav-btn" id="datePrevMonth"><i class="fas fa-chevron-right"></i></button>
+      <div class="date-input-group">
+        <select id="yearSelect"></select>
+        <select id="monthSelect">
+          <option value="0">فروردین</option><option value="1">اردیبهشت</option><option value="2">خرداد</option>
+          <option value="3">تیر</option><option value="4">مرداد</option><option value="5">شهریور</option>
+          <option value="6">مهر</option><option value="7">آبان</option><option value="8">آذر</option>
+          <option value="9">دی</option><option value="10">بهمن</option><option value="11">اسفند</option>
+        </select>
+        <select id="daySelect"></select>
+      </div>
+      <button class="date-nav-btn" id="dateNextMonth"><i class="fas fa-chevron-left"></i></button>
+      <button class="date-nav-btn" id="dateNextYear"><i class="fas fa-chevron-double-left"></i></button>
+    </div>
+  </div>
+
+  <!-- وضعیت -->
+  <div class="status-bar">
+    <span class="status-dot" id="statusDot"></span>
+    <span class="status-text" id="statusText">در انتظار ثبت</span>
+    <span class="clock" id="clockDisplay">--:--:--</span>
+    <i class="fas fa-clock" style="color:var(--accent, #b68b6b); font-size:20px; cursor:pointer;" id="secretTrigger"></i>
+  </div>
+
+  <!-- لیست اعضا -->
+  <div class="member-list" id="memberList"></div>
+
+  <!-- دکمه‌ها -->
+  <div class="btn-group">
+    <button class="btn btn-primary" id="checkInBtn" disabled><i class="fas fa-check"></i> ورود</button>
+    <button class="btn btn-danger" id="checkOutBtn" disabled><i class="fas fa-times"></i> خروج</button>
+    <button class="btn btn-success" id="saveDayBtn" disabled><i class="fas fa-save"></i> ثبت روز</button>
+    <button class="btn btn-rank" id="toggleRankBtn"><i class="fas fa-trophy"></i> رتبه‌بندی</button>
+  </div>
+
+  <!-- ===== رتبه‌بندی ===== -->
+  <div class="rank-section" id="rankSection">
+    <h3><i class="fas fa-trophy"></i> رتبه‌بندی حضور <span style="font-size:14px; font-weight:400; color:#6d8ba0;">(بیشترین حضور)</span></h3>
+    <div class="rank-list" id="rankList"></div>
+    
+    <!-- ===== کلید نمایش رتبه‌بندی برای اعضا (فقط در پنل ادمین) ===== -->
+    <div class="rank-visibility-toggle" id="rankVisibilityToggle">
+      <span class="toggle-label"><i class="fas fa-eye"></i> نمایش برای اعضا:</span>
+      <div class="toggle-switch" id="rankSwitch">
+        <div class="toggle-knob"></div>
+      </div>
+      <span class="toggle-status" id="rankStatus">خاموش</span>
+    </div>
+    
+    <div style="margin-top:10px; font-size:13px; color:#6d8ba0; text-align:center;">
+      <i class="fas fa-info-circle"></i> رتبه‌بندی بر اساس تعداد روزهای حضوری که ثبت شده است.
+    </div>
+  </div>
+
+  <!-- پنل ادمین -->
+  <div class="admin-panel" id="adminPanel">
+    <h3><i class="fas fa-user-cog"></i> پنل مدیریت <span class="admin-badge">ادمین</span></h3>
+    <div class="admin-row">
+      <input type="text" id="newMemberName" placeholder="نام جدید">
+      <button class="btn btn-primary" id="addMemberBtn"><i class="fas fa-plus"></i> اضافه</button>
+    </div>
+    <div class="admin-row">
+      <button class="btn btn-outline" id="resetAllBtn"><i class="fas fa-undo"></i> بازنشانی</button>
+      <button class="btn btn-danger" id="removeAllBtn"><i class="fas fa-trash"></i> حذف همه</button>
+      <button class="btn btn-change-password" id="changePasswordBtn"><i class="fas fa-key"></i> تغییر رمز</button>
+    </div>
+    <div class="text-muted" style="padding:4px 10px;">
+      <i class="fas fa-info-circle"></i> برای تغییر وضعیت هر عضو روی وضعیت آن کلیک کنید.
+      <br><i class="fas fa-clock"></i> برای ثبت تاخیر، روی عدد تاخیر کلیک کرده و مقدار را وارد کنید.
+    </div>
+  </div>
+
+  <!-- لاگ -->
+  <div class="log-area" id="logArea">
+    <div style="display:flex; justify-content:space-between; color:#416b81; font-weight:500; padding:4px 0 8px; border-bottom:1px dashed var(--border, #d3dfea);">
+      <span>📋 آخرین ثبت‌ها</span>
+      <span>نوع</span>
+    </div>
+    <div id="logContainer">
+      <div class="text-muted" style="padding:16px 0; text-align:center;">ثبتی وجود ندارد</div>
+    </div>
+  </div>
+
+  <!-- تم -->
+  <div class="theme-selector">
+    <div class="theme-dot active" data-theme="default" style="background:#1e5f7a;" title="پیش‌فرض"></div>
+    <div class="theme-dot" data-theme="ocean" style="background:#0b4f6c;" title="اقیانوس"></div>
+    <div class="theme-dot" data-theme="forest" style="background:#2d6a4f;" title="جنگل"></div>
+    <div class="theme-dot" data-theme="sunset" style="background:#b13e3e;" title="غروب"></div>
+    <div class="theme-dot" data-theme="lavender" style="background:#6b4c7a;" title="اسطوخودوس"></div>
+    <div class="theme-dot" data-theme="mint" style="background:#2d8f7a;" title="نعنایی"></div>
+    <div class="theme-dot" data-theme="rose" style="background:#b13e6b;" title="رز"></div>
+    <div class="theme-dot" data-theme="sky" style="background:#2a7a9c;" title="آسمان"></div>
+    <div class="theme-dot" data-theme="coral" style="background:#c05c4a;" title="مرجانی"></div>
+    <div class="theme-dot" data-theme="gold" style="background:#a67c3b;" title="طلایی"></div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // ---------- داده ----------
+    let masterMembers = [
+      { id: 1, name: 'علی رضایی' },
+      { id: 2, name: 'محمد کریمی' },
+      { id: 3, name: 'زهرا حسینی' },
+      { id: 4, name: 'رضا احمدی' },
+    ];
+    
+    let records = {};
+    let logs = [];
+    let currentDate = new Date();
+    let currentDateKey = '';
+    let clickCount = 0;
+    let isAdmin = false;
+    let showRank = false;
+    let rankVisibleForMembers = false;
+    let adminPassword = '1234';
+    let lockFailed = false; // وضعیت قفل شدن
+
+    // ---------- عناصر ----------
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const memberList = document.getElementById('memberList');
+    const statusDot = document.getElementById('statusDot');
+    const statusText = document.getElementById('statusText');
+    const clockDisplay = document.getElementById('clockDisplay');
+    const logContainer = document.getElementById('logContainer');
+    const adminPanel = document.getElementById('adminPanel');
+    const secretModal = document.getElementById('secretModal');
+    const secretTrigger = document.getElementById('secretTrigger');
+    const rankSection = document.getElementById('rankSection');
+    const rankList = document.getElementById('rankList');
+    const toggleRankBtn = document.getElementById('toggleRankBtn');
+    const currentPassDisplay = document.getElementById('currentPassDisplay');
+
+    const rankSwitch = document.getElementById('rankSwitch');
+    const rankStatus = document.getElementById('rankStatus');
+    const rankVisibilityToggle = document.getElementById('rankVisibilityToggle');
+
+    const checkInBtn = document.getElementById('checkInBtn');
+    const checkOutBtn = document.getElementById('checkOutBtn');
+    const saveDayBtn = document.getElementById('saveDayBtn');
+    const addMemberBtn = document.getElementById('addMemberBtn');
+    const resetAllBtn = document.getElementById('resetAllBtn');
+    const removeAllBtn = document.getElementById('removeAllBtn');
+    const secretLoginBtn = document.getElementById('secretLoginBtn');
+    const changePasswordBtn = document.getElementById('changePasswordBtn');
+    const newMemberName = document.getElementById('newMemberName');
+    const adminUser = document.getElementById('adminUser');
+    const adminPass = document.getElementById('adminPass');
+    
+    const passwordModal = document.getElementById('passwordModal');
+    const newPassword = document.getElementById('newPassword');
+    const confirmPassword = document.getElementById('confirmPassword');
+    const savePasswordBtn = document.getElementById('savePasswordBtn');
+    const cancelPasswordBtn = document.getElementById('cancelPasswordBtn');
+
+    const yearSelect = document.getElementById('yearSelect');
+    const monthSelect = document.getElementById('monthSelect');
+    const daySelect = document.getElementById('daySelect');
+
+    // ===== قفل =====
+    const lockOverlay = document.getElementById('lockOverlay');
+    const lockPassword = document.getElementById('lockPassword');
+    const lockSubmitBtn = document.getElementById('lockSubmitBtn');
+    const lockError = document.getElementById('lockError');
+    const timerDisplay = document.getElementById('timerDisplay');
+    const lockFailedMessage = document.getElementById('lockFailedMessage');
+    let lockTimerInterval = null;
+    let lockTimeLeft = 60;
+
+    // ===== توابع قفل =====
+    function lockSystem(permanent = false) {
+      // قفل کردن سیستم (از کار انداختن)
+      if (lockTimerInterval) {
+        clearInterval(lockTimerInterval);
+        lockTimerInterval = null;
+      }
+      lockFailed = true;
+      lockOverlay.classList.add('locked');
+      lockPassword.disabled = true;
+      lockSubmitBtn.disabled = true;
+      // مخفی کردن المان‌های ورود
+      // کلاس locked قبلاً این کار را می‌کند
+    }
+
+    function startLockTimer() {
+      lockTimeLeft = 60;
+      lockFailed = false;
+      lockError.textContent = '';
+      lockPassword.value = '';
+      lockPassword.disabled = false;
+      lockSubmitBtn.disabled = false;
+      lockOverlay.classList.remove('locked');
+      timerDisplay.textContent = '01:00';
+      
+      if (lockTimerInterval) clearInterval(lockTimerInterval);
+      
+      lockTimerInterval = setInterval(() => {
+        lockTimeLeft--;
+        const mins = String(Math.floor(lockTimeLeft / 60)).padStart(2, '0');
+        const secs = String(lockTimeLeft % 60).padStart(2, '0');
+        timerDisplay.textContent = `${mins}:${secs}`;
+        
+        if (lockTimeLeft <= 0) {
+          clearInterval(lockTimerInterval);
+          lockTimerInterval = null;
+          // صفحه قفل می‌شود (از کار می‌افتد)
+          lockSystem(true);
+        }
+      }, 1000);
+    }
+
+    function checkLockPassword() {
+      if (lockFailed) return;
+      
+      const entered = lockPassword.value.trim();
+      
+      // بررسی: آیا ۳ رقم است و هر رقم بین ۱ تا ۱۰ است؟
+      // اما رمز می‌تواند ترکیبی از اعداد باشد مثلاً ۱۲۳
+      // شرط: هر رقم باید بین 1 تا 10 باشد (یعنی 1 تا 9 و 10)
+      // اما برای سادگی: رمز باید ۳ رقم باشد و هر رقم بین 1 تا 9 باشد (چون 10 دو رقمی است)
+      // با توجه به درخواست: "رمز سه رقم ۱ تا ۱۰" یعنی هر رقم می‌تواند 1 تا 10 باشد
+      // اما 10 دو رقمی است، پس منظور اعداد 1 تا 9 هستند
+      
+      // بررسی: آیا ۳ رقم است؟
+      if (entered.length !== 3) {
+        lockError.textContent = '❌ رمز باید دقیقاً ۳ رقم باشد!';
+        lockPassword.value = '';
+        lockPassword.focus();
+        return;
+      }
+      
+      // بررسی: آیا همه رقم‌ها بین 1 تا 9 هستند؟
+      const digits = entered.split('');
+      let isValid = true;
+      for (let d of digits) {
+        const num = parseInt(d);
+        if (isNaN(num) || num < 1 || num > 9) {
+          isValid = false;
+          break;
+        }
+      }
+      
+      if (isValid) {
+        // رمز درست است
+        clearInterval(lockTimerInterval);
+        lockTimerInterval = null;
+        lockOverlay.classList.remove('show');
+        document.getElementById('appContainer').style.display = 'block';
+        initApp();
+      } else {
+        // رمز اشتباه است → صفحه قفل می‌شود (از کار می‌افتد)
+        lockError.textContent = '❌ رمز اشتباه است!';
+        lockSystem(true);
+      }
+    }
+
+    // ===== توابع تاریخ =====
+    function persianToGregorian(py, pm, pd) {
+      return new Date(py + 621, pm - 1, pd);
+    }
+
+    function gregorianToPersian(date) {
+      const d = new Date(date);
+      return {
+        year: d.getFullYear() - 621,
+        month: d.getMonth() + 1,
+        day: d.getDate()
+      };
+    }
+
+    function getDaysInMonth(year, month) {
+      if (month >= 1 && month <= 6) return 31;
+      if (month >= 7 && month <= 11) return 30;
+      if (month === 12) return 29;
+      return 30;
+    }
+
+    function getDateKey(date) {
+      const p = gregorianToPersian(date);
+      return `${p.year}/${String(p.month).padStart(2,'0')}/${String(p.day).padStart(2,'0')}`;
+    }
+
+    // ===== به‌روزرسانی سلکتورها =====
+    function updateDayOptions(selectedDay) {
+      const year = parseInt(yearSelect.value) || 1400;
+      const month = parseInt(monthSelect.value) + 1;
+      const daysInMonth = getDaysInMonth(year, month);
+      
+      daySelect.innerHTML = '';
+      for (let d = 1; d <= daysInMonth; d++) {
+        const opt = document.createElement('option');
+        opt.value = d;
+        opt.textContent = d;
+        if (d === selectedDay) opt.selected = true;
+        daySelect.appendChild(opt);
+      }
+      if (selectedDay > daysInMonth) {
+        daySelect.value = daysInMonth;
+      }
+    }
+
+    function updateDateSelectors() {
+      const p = gregorianToPersian(currentDate);
+      
+      yearSelect.innerHTML = '';
+      for (let y = 1400; y <= 1410; y++) {
+        const opt = document.createElement('option');
+        opt.value = y;
+        opt.textContent = y;
+        if (y === p.year) opt.selected = true;
+        yearSelect.appendChild(opt);
+      }
+      
+      monthSelect.value = p.month - 1;
+      updateDayOptions(p.day);
+      
+      currentDateKey = getDateKey(currentDate);
+    }
+
+    function updateDateFromSelectors() {
+      const year = parseInt(yearSelect.value);
+      const month = parseInt(monthSelect.value) + 1;
+      let day = parseInt(daySelect.value);
+      
+      const maxDay = getDaysInMonth(year, month);
+      if (day > maxDay) {
+        day = maxDay;
+        daySelect.value = day;
+      }
+      
+      const greg = persianToGregorian(year, month, day);
+      currentDate = greg;
+      currentDateKey = getDateKey(currentDate);
+      
+      renderMembers();
+      updateStatusBar();
+      renderLogs();
+      updateRanking();
+    }
+
+    // ===== رتبه‌بندی =====
+    function updateRanking() {
+      const rankMap = {};
+      masterMembers.forEach(m => {
+        rankMap[m.id] = { name: m.name, count: 0 };
+      });
+
+      Object.keys(records).forEach(dateKey => {
+        const dayRecords = records[dateKey];
+        masterMembers.forEach(m => {
+          if (dayRecords[m.id] && dayRecords[m.id].status === 'present') {
+            rankMap[m.id].count++;
+          }
+        });
+      });
+
+      const sorted = Object.values(rankMap).sort((a, b) => b.count - a.count);
+      
+      let html = '';
+      if (sorted.length === 0 || sorted.every(s => s.count === 0)) {
+        html = `<div class="text-muted" style="padding:20px 0; text-align:center;">هنوز رکوردی برای رتبه‌بندی وجود ندارد</div>`;
+      } else {
+        sorted.forEach((item, index) => {
+          let medal = '';
+          if (index === 0) medal = '🥇';
+          else if (index === 1) medal = '🥈';
+          else if (index === 2) medal = '🥉';
+          else medal = `${index + 1}`;
+          
+          html += `
+            <div class="rank-item">
+              <span class="rank-number">${medal}</span>
+              <span class="rank-name">${item.name}</span>
+              <span class="rank-count">${item.count} روز</span>
+            </div>
+          `;
+        });
+      }
+      rankList.innerHTML = html;
+    }
+
+    // ===== توابع اصلی =====
+    function getRecordForDate(dateKey) {
+      if (!records[dateKey]) {
+        records[dateKey] = {};
+        masterMembers.forEach(m => {
+          records[dateKey][m.id] = { status: 'present', delay: 0 };
+        });
+      }
+      return records[dateKey];
+    }
+
+    function getCurrentRecord() {
+      return getRecordForDate(currentDateKey);
+    }
+
+    function renderMembers() {
+      const rec = getCurrentRecord();
+      let html = '';
+      masterMembers.forEach(m => {
+        const statusData = rec[m.id] || { status: 'present', delay: 0 };
+        const statusClass = statusData.status === 'present' ? '' : 'absent';
+        const statusLabel = statusData.status === 'present' ? 'حاضر' : 'غایب';
+        const hasDelay = statusData.delay > 0;
+        const delayText = hasDelay ? `${statusData.delay} دقیقه` : 'بدون تاخیر';
+        const delayIconClass = hasDelay ? 'has-delay' : 'no-delay';
+        const delayIcon = hasDelay ? 'fa-exclamation-circle' : 'fa-check-circle';
+        
+        html += `
+          <div class="member-item" data-id="${m.id}">
+            <div class="member-name">
+              <span class="edit-icon" data-id="${m.id}"><i class="fas fa-user-edit"></i></span>
+              <span>${m.name}</span>
+            </div>
+            <div class="member-status">
+              <span class="status-badge ${statusClass} ${isAdmin ? 'clickable' : ''}" data-id="${m.id}">${statusLabel}</span>
+              <span class="delay-badge" data-id="${m.id}">
+                <i class="fas ${delayIcon} delay-status-icon ${delayIconClass}"></i>
+                <span class="delay-value" data-id="${m.id}">${delayText}</span>
+                ${isAdmin ? `<i class="fas fa-edit delay-edit" data-id="${m.id}"></i>` : ''}
+                ${isAdmin ? `<input type="number" class="delay-input" data-id="${m.id}" min="0" max="999" placeholder="دقیقه">` : ''}
+              </span>
+              ${isAdmin ? `<span class="member-remove" data-id="${m.id}"><i class="fas fa-times-circle"></i></span>` : ''}
+            </div>
+          </div>
+        `;
+      });
+      memberList.innerHTML = html;
+      attachMemberEvents();
+    }
+
+    function attachMemberEvents() {
+      if (isAdmin) {
+        document.querySelectorAll('.status-badge.clickable').forEach(el => {
+          el.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const id = Number(this.dataset.id);
+            const rec = getCurrentRecord();
+            if (!rec[id]) rec[id] = { status: 'present', delay: 0 };
+            rec[id].status = rec[id].status === 'present' ? 'absent' : 'present';
+            renderMembers();
+            updateStatusBar();
+            updateRanking();
+          });
+        });
+      }
+
+      document.querySelectorAll('.member-remove').forEach(el => {
+        el.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (!isAdmin) return;
+          const id = Number(this.dataset.id);
+          if (!confirm('آیا این عضو حذف شود؟')) return;
+          masterMembers = masterMembers.filter(m => m.id !== id);
+          Object.keys(records).forEach(key => {
+            delete records[key][id];
+          });
+          renderMembers();
+          updateStatusBar();
+          updateRanking();
+        });
+      });
+
+      document.querySelectorAll('.edit-icon').forEach(el => {
+        el.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (!isAdmin) return;
+          const id = Number(this.dataset.id);
+          const member = masterMembers.find(m => m.id === id);
+          if (!member) return;
+          const newName = prompt('نام جدید:', member.name);
+          if (newName && newName.trim() !== '') {
+            member.name = newName.trim();
+            renderMembers();
+            updateRanking();
+          }
+        });
+      });
+
+      document.querySelectorAll('.delay-edit').forEach(el => {
+        el.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (!isAdmin) return;
+          const id = Number(this.dataset.id);
+          const rec = getCurrentRecord();
+          if (!rec[id]) rec[id] = { status: 'present', delay: 0 };
+          const input = document.querySelector(`.delay-input[data-id="${id}"]`);
+          const valueSpan = document.querySelector(`.delay-value[data-id="${id}"]`);
+          if (input.style.display === 'inline-block') {
+            const val = parseInt(input.value);
+            if (!isNaN(val) && val >= 0) {
+              rec[id].delay = val;
+              renderMembers();
+              addLog('delay', `${masterMembers.find(m=>m.id===id).name} (${val} دقیقه تاخیر)`);
+            } else {
+              input.style.display = 'none';
+              valueSpan.style.display = 'inline';
+            }
+          } else {
+            input.value = rec[id].delay || 0;
+            input.style.display = 'inline-block';
+            valueSpan.style.display = 'none';
+            input.focus();
+            input.select();
+            const saveDelay = () => {
+              const val = parseInt(input.value);
+              if (!isNaN(val) && val >= 0) {
+                rec[id].delay = val;
+                renderMembers();
+                addLog('delay', `${masterMembers.find(m=>m.id===id).name} (${val} دقیقه تاخیر)`);
+              } else {
+                input.style.display = 'none';
+                valueSpan.style.display = 'inline';
+              }
+              input.removeEventListener('blur', saveDelay);
+            };
+            input.addEventListener('blur', saveDelay);
+            input.addEventListener('keydown', function(e) {
+              if (e.key === 'Enter') {
+                input.blur();
+              }
+            });
+          }
+        });
+      });
+
+      document.querySelectorAll('.delay-value').forEach(el => {
+        el.addEventListener('click', function(e) {
+          if (!isAdmin) return;
+          const id = Number(this.dataset.id);
+          const editIcon = document.querySelector(`.delay-edit[data-id="${id}"]`);
+          if (editIcon) editIcon.click();
+        });
+      });
+    }
+
+    function updateStatusBar() {
+      const rec = getCurrentRecord();
+      const present = masterMembers.filter(m => {
+        const data = rec[m.id];
+        return data && data.status === 'present';
+      }).length;
+      const total = masterMembers.length;
+      const hasDelay = masterMembers.some(m => {
+        const data = rec[m.id];
+        return data && data.delay > 0;
+      });
+      
+      if (total === 0) {
+        statusDot.className = 'status-dot';
+        statusText.textContent = 'هیچ عضوی ثبت نشده';
+        return;
+      }
+      const ratio = present / total;
+      let delayText = hasDelay ? ' ⚠️ تاخیر دارد' : '';
+      if (ratio >= 0.6) {
+        statusDot.className = 'status-dot';
+        statusText.textContent = `${present} نفر حاضر${delayText}`;
+      } else if (ratio > 0.2) {
+        statusDot.className = 'status-dot warning';
+        statusText.textContent = `${present} نفر حاضر${delayText}`;
+      } else {
+        statusDot.className = 'status-dot inactive';
+        statusText.textContent = `${present} نفر حاضر${delayText}`;
+      }
+    }
+
+    function renderLogs() {
+      if (logs.length === 0) {
+        logContainer.innerHTML = `<div class="text-muted" style="padding:16px 0; text-align:center;">ثبتی وجود ندارد</div>`;
+        return;
+      }
+      const recent = logs.slice(-6).reverse();
+      let html = '';
+      recent.forEach(l => {
+        let label = '';
+        if (l.type === 'in') label = '✔ ورود';
+        else if (l.type === 'out') label = '✖ خروج';
+        else if (l.type === 'delay') label = '⏱ تاخیر';
+        else if (l.type === 'saveDay') label = '📅 ثبت روز';
+        else if (l.type === 'password') label = '🔑 تغییر رمز';
+        else label = '📌 گزارش';
+        html += `<div class="log-entry"><span>${l.name} — ${l.time}</span><span>${label}</span></div>`;
+      });
+      logContainer.innerHTML = html;
+    }
+
+    function addLog(type, name) {
+      const time = new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      logs.push({ type, name, time });
+      renderLogs();
+      if (type === 'in') {
+        statusDot.className = 'status-dot';
+        statusText.textContent = `${name} وارد شد`;
+      } else if (type === 'out') {
+        statusDot.className = 'status-dot inactive';
+        statusText.textContent = `${name} خارج شد`;
+      } else if (type === 'delay') {
+        statusText.textContent = `⏱ ${name}`;
+      } else if (type === 'saveDay') {
+        statusText.textContent = `✅ روز ${currentDateKey} ثبت شد`;
+      } else if (type === 'password') {
+        statusText.textContent = `🔑 رمز عبور تغییر کرد`;
+      } else {
+        statusText.textContent = `گزارش`;
+      }
+      setTimeout(() => updateStatusBar(), 1500);
+    }
+
+    function getLastMember() {
+      if (masterMembers.length === 0) { alert('هیچ عضوی وجود ندارد'); return null; }
+      return masterMembers[masterMembers.length - 1];
+    }
+
+    // ===== رویدادهای ادمین =====
+    function enableAdminMode() {
+      isAdmin = true;
+      adminPanel.classList.add('active');
+      checkInBtn.disabled = false;
+      checkOutBtn.disabled = false;
+      saveDayBtn.disabled = false;
+      rankVisibilityToggle.style.display = 'flex';
+      renderMembers();
+      updateStatusBar();
+    }
+
+    checkInBtn.addEventListener('click', function() {
+      if (!isAdmin) return;
+      const m = getLastMember();
+      if (!m) return;
+      const rec = getCurrentRecord();
+      if (!rec[m.id]) rec[m.id] = { status: 'present', delay: 0 };
+      rec[m.id].status = 'present';
+      renderMembers();
+      addLog('in', m.name);
+      updateStatusBar();
+      updateRanking();
+    });
+
+    checkOutBtn.addEventListener('click', function() {
+      if (!isAdmin) return;
+      const m = getLastMember();
+      if (!m) return;
+      const rec = getCurrentRecord();
+      if (!rec[m.id]) rec[m.id] = { status: 'present', delay: 0 };
+      rec[m.id].status = 'absent';
+      renderMembers();
+      addLog('out', m.name);
+      updateStatusBar();
+      updateRanking();
+    });
+
+    saveDayBtn.addEventListener('click', function() {
+      if (!isAdmin) return;
+      const rec = getCurrentRecord();
+      const present = masterMembers.filter(m => {
+        const data = rec[m.id];
+        return data && data.status === 'present';
+      }).map(m => m.name).join('، ') || 'هیچ';
+      const absent = masterMembers.filter(m => {
+        const data = rec[m.id];
+        return data && data.status === 'absent';
+      }).map(m => m.name).join('، ') || 'هیچ';
+      const delays = masterMembers.filter(m => {
+        const data = rec[m.id];
+        return data && data.delay > 0;
+      }).map(m => `${m.name} (${rec[m.id].delay} دقیقه)`).join('، ') || 'بدون تاخیر';
+      
+      addLog('saveDay', `ثبت روز ${currentDateKey} ✅`);
+      alert(`📋 ثبت روز ${currentDateKey}:\n✅ حاضر: ${present}\n❌ غایب: ${absent}\n⏱ تاخیر: ${delays}`);
+      updateRanking();
+    });
+
+    addMemberBtn.addEventListener('click', function() {
+      if (!isAdmin) return;
+      const name = newMemberName.value.trim();
+      if (!name) { alert('لطفا نام را وارد کنید'); return; }
+      const newId = masterMembers.length ? Math.max(...masterMembers.map(m => m.id)) + 1 : 1;
+      masterMembers.push({ id: newId, name });
+      const rec = getCurrentRecord();
+      rec[newId] = { status: 'present', delay: 0 };
+      newMemberName.value = '';
+      renderMembers();
+      updateStatusBar();
+      addLog('in', name + ' (عضو جدید)');
+      updateRanking();
+    });
+
+    resetAllBtn.addEventListener('click', function() {
+      if (!isAdmin) return;
+      if (!confirm('همه اعضا در این روز به وضعیت حاضر بازنشانی می‌شوند؟')) return;
+      const rec = getCurrentRecord();
+      masterMembers.forEach(m => {
+        if (!rec[m.id]) rec[m.id] = { status: 'present', delay: 0 };
+        rec[m.id].status = 'present';
+      });
+      renderMembers();
+      updateStatusBar();
+      updateRanking();
+    });
+
+    removeAllBtn.addEventListener('click', function() {
+      if (!isAdmin) return;
+      if (!confirm('همه اعضا حذف می‌شوند؟')) return;
+      masterMembers = [];
+      records[currentDateKey] = {};
+      renderMembers();
+      updateStatusBar();
+      updateRanking();
+    });
+
+    // ===== تغییر رمز =====
+    changePasswordBtn.addEventListener('click', function() {
+      if (!isAdmin) return;
+      passwordModal.classList.add('show');
+      newPassword.value = '';
+      confirmPassword.value = '';
+      newPassword.focus();
+    });
+
+    savePasswordBtn.addEventListener('click', function() {
+      const newPass = newPassword.value.trim();
+      const confirmPass = confirmPassword.value.trim();
+      
+      if (newPass.length < 4) {
+        alert('رمز عبور باید حداقل ۴ کاراکتر باشد');
+        return;
+      }
+      if (newPass !== confirmPass) {
+        alert('رمز عبور و تکرار آن مطابقت ندارند');
+        return;
+      }
+      
+      adminPassword = newPass;
+      currentPassDisplay.textContent = newPass;
+      passwordModal.classList.remove('show');
+      addLog('password', 'رمز عبور توسط ادمین تغییر کرد');
+      alert('✅ رمز عبور با موفقیت تغییر کرد');
+    });
+
+    cancelPasswordBtn.addEventListener('click', function() {
+      passwordModal.classList.remove('show');
+    });
+
+    passwordModal.addEventListener('click', function(e) {
+      if (e.target === this) this.classList.remove('show');
+    });
+
+    newPassword.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') confirmPassword.focus();
+    });
+    confirmPassword.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') savePasswordBtn.click();
+    });
+
+    // ===== رتبه‌بندی =====
+    toggleRankBtn.addEventListener('click', function() {
+      showRank = !showRank;
+      rankSection.classList.toggle('active');
+      if (showRank) {
+        updateRanking();
+        this.innerHTML = '<i class="fas fa-trophy"></i> بستن رتبه‌بندی';
+      } else {
+        this.innerHTML = '<i class="fas fa-trophy"></i> رتبه‌بندی';
+      }
+    });
+
+    // ===== کلید نمایش رتبه‌بندی برای اعضا =====
+    rankSwitch.addEventListener('click', function() {
+      if (!isAdmin) return;
+      rankVisibleForMembers = !rankVisibleForMembers;
+      this.classList.toggle('active');
+      rankStatus.textContent = rankVisibleForMembers ? 'روشن' : 'خاموش';
+      
+      if (!showRank) {
+        showRank = true;
+        rankSection.classList.add('active');
+        toggleRankBtn.innerHTML = '<i class="fas fa-trophy"></i> بستن رتبه‌بندی';
+        updateRanking();
+      }
+      
+      if (rankVisibleForMembers) {
+        alert('✅ رتبه‌بندی برای اعضا قابل مشاهده شد');
+      } else {
+        alert('❌ رتبه‌بندی برای اعضا مخفی شد');
+      }
+    });
+
+    // ===== دکمه‌های ناوبری تاریخ =====
+    document.getElementById('datePrevYear').addEventListener('click', function() {
+      const p = gregorianToPersian(currentDate);
+      const newDate = persianToGregorian(p.year - 1, p.month, Math.min(p.day, getDaysInMonth(p.year - 1, p.month)));
+      currentDate = newDate;
+      updateDateSelectors();
+      updateDateFromSelectors();
+    });
+
+    document.getElementById('datePrevMonth').addEventListener('click', function() {
+      const p = gregorianToPersian(currentDate);
+      let newMonth = p.month - 1;
+      let newYear = p.year;
+      if (newMonth < 1) { newMonth = 12; newYear--; }
+      const maxDay = getDaysInMonth(newYear, newMonth);
+      const newDay = Math.min(p.day, maxDay);
+      const newDate = persianToGregorian(newYear, newMonth, newDay);
+      currentDate = newDate;
+      updateDateSelectors();
+      updateDateFromSelectors();
+    });
+
+    document.getElementById('dateNextMonth').addEventListener('click', function() {
+      const p = gregorianToPersian(currentDate);
+      let newMonth = p.month + 1;
+      let newYear = p.year;
+      if (newMonth > 12) { newMonth = 1; newYear++; }
+      const maxDay = getDaysInMonth(newYear, newMonth);
+      const newDay = Math.min(p.day, maxDay);
+      const newDate = persianToGregorian(newYear, newMonth, newDay);
+      currentDate = newDate;
+      updateDateSelectors();
+      updateDateFromSelectors();
+    });
+
+    document.getElementById('dateNextYear').addEventListener('click', function() {
+      const p = gregorianToPersian(currentDate);
+      const newDate = persianToGregorian(p.year + 1, p.month, Math.min(p.day, getDaysInMonth(p.year + 1, p.month)));
+      currentDate = newDate;
+      updateDateSelectors();
+      updateDateFromSelectors();
+    });
+
+    yearSelect.addEventListener('change', function() {
+      const currentDay = parseInt(daySelect.value) || 1;
+      updateDayOptions(currentDay);
+      updateDateFromSelectors();
+    });
+
+    monthSelect.addEventListener('change', function() {
+      const currentDay = parseInt(daySelect.value) || 1;
+      updateDayOptions(currentDay);
+      updateDateFromSelectors();
+    });
+
+    daySelect.addEventListener('change', function() {
+      updateDateFromSelectors();
+    });
+
+    // ===== ورود مخفی (ادمین) =====
+    secretTrigger.addEventListener('click', function() {
+      clickCount++;
+      if (clickCount === 3) {
+        secretModal.classList.add('show');
+        adminUser.value = '';
+        adminPass.value = '';
+        currentPassDisplay.textContent = adminPassword;
+        adminUser.focus();
+        clickCount = 0;
+      }
+      clearTimeout(window.clickReset);
+      window.clickReset = setTimeout(() => { clickCount = 0; }, 5000);
+    });
+
+    secretLoginBtn.addEventListener('click', function() {
+      const user = adminUser.value.trim();
+      const pass = adminPass.value.trim();
+      if (user === 'admin' && pass === adminPassword) {
+        secretModal.classList.remove('show');
+        enableAdminMode();
+        alert('✅ به پنل ادمین خوش آمدید');
+      } else {
+        alert('❌ نام کاربری یا رمز عبور اشتباه است');
+      }
+    });
+
+    adminUser.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') adminPass.focus();
+    });
+    adminPass.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') secretLoginBtn.click();
+    });
+
+    secretModal.addEventListener('click', function(e) {
+      if (e.target === this) this.classList.remove('show');
+    });
+
+    // ===== قفل =====
+    lockSubmitBtn.addEventListener('click', checkLockPassword);
+    lockPassword.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') checkLockPassword();
+    });
+
+    // محدود کردن ورودی به ۳ رقم
+    lockPassword.addEventListener('input', function() {
+      this.value = this.value.replace(/[^0-9]/g, '').slice(0, 3);
+    });
+
+    // ===== تم =====
+    document.querySelectorAll('.theme-dot').forEach(dot => {
+      dot.addEventListener('click', function() {
+        document.body.className = 'theme-' + this.dataset.theme;
+        document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // ===== ساعت =====
+    function updateClock() {
+      clockDisplay.textContent = new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    }
+
+    // ===== شروع برنامه (بعد از رمز) =====
+    function initApp() {
+      updateClock();
+      setInterval(updateClock, 1000);
+      updateDateSelectors();
+      updateDateFromSelectors();
+      renderMembers();
+      updateStatusBar();
+      renderLogs();
+      updateRanking();
+      currentPassDisplay.textContent = adminPassword;
+      
+      rankVisibilityToggle.style.display = 'none';
+      rankSwitch.classList.remove('active');
+      rankStatus.textContent = 'خاموش';
+      rankVisibleForMembers = false;
+    }
+
+    // ===== اجرا =====
+    // لودینگ اول را مخفی کن
+    setTimeout(() => {
+      loadingOverlay.classList.add('hidden');
+      // نمایش لودینگ دوم (قفل)
+      lockOverlay.classList.add('show');
+      startLockTimer();
+      lockPassword.focus();
+    }, 2000);
+
+  })();
+</script>
+</body>
+</html>
