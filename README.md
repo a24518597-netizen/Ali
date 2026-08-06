@@ -67,7 +67,6 @@
     .btn-primary { background: var(--primary, #1e5f7a); color: #fff; }
     .btn-primary:hover { filter: brightness(0.85); }
     .admin-panel { background: var(--primary-light, #f3f8fe); border-color: var(--border, #dde8f2); }
-    .log-area { background: var(--card-bg, #f8fbfe); border-color: var(--border, #e4ecf5); }
     .date-box { background: var(--primary-light, #eef3f8); border-color: var(--border, #d7e1ea); }
     .btn-outline { border-color: var(--border, #cbdae7); }
     .btn-outline:hover { background: var(--primary-light, #f2f8ff); }
@@ -132,7 +131,6 @@
       opacity: 1;
       visibility: visible;
     }
-    /* حالت قفل شده (از کار افتاده) - صفحه سیاه می‌ماند */
     .lock-overlay.locked {
       opacity: 1;
       visibility: visible;
@@ -238,7 +236,6 @@
       font-weight: 600;
       font-size: 16px;
     }
-    /* پیام از کار افتادن */
     .lock-overlay .lock-failed-message {
       display: none;
       color: #e07c5e;
@@ -251,7 +248,6 @@
       display: block;
     }
 
-    /* ===== بقیه استایل‌ها ===== */
     .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
     .header h1 { font-size: 24px; font-weight: 700; color: var(--text, #1e2f3a); display: flex; align-items: center; gap: 10px; }
     .header h1 i { color: var(--accent, #b68b6b); }
@@ -401,9 +397,6 @@
     .password-box .btn-secondary { background: #e4ecf5; color: var(--text, #1a3343); }
     .password-box .btn-secondary:hover { background: #d0dce8; }
 
-    .log-area { border-radius: 28px; padding: 14px 14px 4px; margin-top: 18px; border: 1px solid; }
-    .log-entry { display: flex; justify-content: space-between; padding: 8px 4px; border-bottom: 1px solid var(--border, #eaf0f6); font-size: 14px; }
-    .log-entry:last-child { border-bottom: none; }
     .text-muted { color: #6d8ba0; font-size: 14px; }
     .admin-badge { background: #d4a373; color: #fff; font-size: 11px; padding: 2px 10px; border-radius: 30px; margin-right: 6px; }
     .delay-status-icon.has-delay { color: #b13e3e; animation: pulse-delay 1.5s infinite; }
@@ -551,17 +544,6 @@
     </div>
   </div>
 
-  <!-- لاگ -->
-  <div class="log-area" id="logArea">
-    <div style="display:flex; justify-content:space-between; color:#416b81; font-weight:500; padding:4px 0 8px; border-bottom:1px dashed var(--border, #d3dfea);">
-      <span>📋 آخرین ثبت‌ها</span>
-      <span>نوع</span>
-    </div>
-    <div id="logContainer">
-      <div class="text-muted" style="padding:16px 0; text-align:center;">ثبتی وجود ندارد</div>
-    </div>
-  </div>
-
   <!-- تم -->
   <div class="theme-selector">
     <div class="theme-dot active" data-theme="default" style="background:#1e5f7a;" title="پیش‌فرض"></div>
@@ -579,14 +561,18 @@
 
 <script>
   (function() {
+    // ---------- کلیدهای ذخیره‌سازی ----------
+    const STORAGE_KEYS = {
+      MEMBERS: 'attendance_members',
+      RECORDS: 'attendance_records',
+      LOGS: 'attendance_logs',
+      ADMIN_PASSWORD: 'attendance_admin_password',
+      RANK_VISIBLE: 'attendance_rank_visible',
+      THEME: 'attendance_theme'
+    };
+
     // ---------- داده ----------
-    let masterMembers = [
-      { id: 1, name: 'علی رضایی' },
-      { id: 2, name: 'محمد کریمی' },
-      { id: 3, name: 'زهرا حسینی' },
-      { id: 4, name: 'رضا احمدی' },
-    ];
-    
+    let masterMembers = [];
     let records = {};
     let logs = [];
     let currentDate = new Date();
@@ -596,7 +582,88 @@
     let showRank = false;
     let rankVisibleForMembers = false;
     let adminPassword = '1234';
-    let lockFailed = false; // وضعیت قفل شدن
+    let lockFailed = false;
+
+    // ===== توابع ذخیره‌سازی =====
+    function saveData() {
+      try {
+        localStorage.setItem(STORAGE_KEYS.MEMBERS, JSON.stringify(masterMembers));
+        localStorage.setItem(STORAGE_KEYS.RECORDS, JSON.stringify(records));
+        localStorage.setItem(STORAGE_KEYS.LOGS, JSON.stringify(logs));
+        localStorage.setItem(STORAGE_KEYS.ADMIN_PASSWORD, adminPassword);
+        localStorage.setItem(STORAGE_KEYS.RANK_VISIBLE, JSON.stringify(rankVisibleForMembers));
+      } catch (e) {
+        console.warn('خطا در ذخیره‌سازی:', e);
+      }
+    }
+
+    function loadData() {
+      try {
+        const members = localStorage.getItem(STORAGE_KEYS.MEMBERS);
+        if (members) {
+          masterMembers = JSON.parse(members);
+        } else {
+          masterMembers = [
+            { id: 1, name: 'علی رضایی' },
+            { id: 2, name: 'محمد کریمی' },
+            { id: 3, name: 'زهرا حسینی' },
+            { id: 4, name: 'رضا احمدی' },
+          ];
+        }
+
+        const recs = localStorage.getItem(STORAGE_KEYS.RECORDS);
+        if (recs) {
+          records = JSON.parse(recs);
+        } else {
+          records = {};
+        }
+
+        const logsData = localStorage.getItem(STORAGE_KEYS.LOGS);
+        if (logsData) {
+          logs = JSON.parse(logsData);
+        } else {
+          logs = [];
+        }
+
+        const pass = localStorage.getItem(STORAGE_KEYS.ADMIN_PASSWORD);
+        if (pass) {
+          adminPassword = pass;
+        }
+
+        const rankVis = localStorage.getItem(STORAGE_KEYS.RANK_VISIBLE);
+        if (rankVis) {
+          rankVisibleForMembers = JSON.parse(rankVis);
+        } else {
+          rankVisibleForMembers = false;
+        }
+
+        const theme = localStorage.getItem(STORAGE_KEYS.THEME);
+        if (theme) {
+          document.body.className = 'theme-' + theme;
+          document.querySelectorAll('.theme-dot').forEach(d => {
+            d.classList.toggle('active', d.dataset.theme === theme);
+          });
+        }
+      } catch (e) {
+        console.warn('خطا در بارگذاری داده:', e);
+        masterMembers = [
+          { id: 1, name: 'علی رضایی' },
+          { id: 2, name: 'محمد کریمی' },
+          { id: 3, name: 'زهرا حسینی' },
+          { id: 4, name: 'رضا احمدی' },
+        ];
+        records = {};
+        logs = [];
+      }
+    }
+
+    // ===== تابع ذخیره و رندر =====
+    function saveAndRender() {
+      saveData();
+      renderMembers();
+      updateStatusBar();
+      updateRanking();
+    }
 
     // ---------- عناصر ----------
     const loadingOverlay = document.getElementById('loadingOverlay');
@@ -604,7 +671,6 @@
     const statusDot = document.getElementById('statusDot');
     const statusText = document.getElementById('statusText');
     const clockDisplay = document.getElementById('clockDisplay');
-    const logContainer = document.getElementById('logContainer');
     const adminPanel = document.getElementById('adminPanel');
     const secretModal = document.getElementById('secretModal');
     const secretTrigger = document.getElementById('secretTrigger');
@@ -645,13 +711,11 @@
     const lockSubmitBtn = document.getElementById('lockSubmitBtn');
     const lockError = document.getElementById('lockError');
     const timerDisplay = document.getElementById('timerDisplay');
-    const lockFailedMessage = document.getElementById('lockFailedMessage');
     let lockTimerInterval = null;
     let lockTimeLeft = 60;
 
     // ===== توابع قفل =====
     function lockSystem(permanent = false) {
-      // قفل کردن سیستم (از کار انداختن)
       if (lockTimerInterval) {
         clearInterval(lockTimerInterval);
         lockTimerInterval = null;
@@ -660,8 +724,6 @@
       lockOverlay.classList.add('locked');
       lockPassword.disabled = true;
       lockSubmitBtn.disabled = true;
-      // مخفی کردن المان‌های ورود
-      // کلاس locked قبلاً این کار را می‌کند
     }
 
     function startLockTimer() {
@@ -685,7 +747,6 @@
         if (lockTimeLeft <= 0) {
           clearInterval(lockTimerInterval);
           lockTimerInterval = null;
-          // صفحه قفل می‌شود (از کار می‌افتد)
           lockSystem(true);
         }
       }, 1000);
@@ -696,14 +757,6 @@
       
       const entered = lockPassword.value.trim();
       
-      // بررسی: آیا ۳ رقم است و هر رقم بین ۱ تا ۱۰ است؟
-      // اما رمز می‌تواند ترکیبی از اعداد باشد مثلاً ۱۲۳
-      // شرط: هر رقم باید بین 1 تا 10 باشد (یعنی 1 تا 9 و 10)
-      // اما برای سادگی: رمز باید ۳ رقم باشد و هر رقم بین 1 تا 9 باشد (چون 10 دو رقمی است)
-      // با توجه به درخواست: "رمز سه رقم ۱ تا ۱۰" یعنی هر رقم می‌تواند 1 تا 10 باشد
-      // اما 10 دو رقمی است، پس منظور اعداد 1 تا 9 هستند
-      
-      // بررسی: آیا ۳ رقم است؟
       if (entered.length !== 3) {
         lockError.textContent = '❌ رمز باید دقیقاً ۳ رقم باشد!';
         lockPassword.value = '';
@@ -711,7 +764,6 @@
         return;
       }
       
-      // بررسی: آیا همه رقم‌ها بین 1 تا 9 هستند؟
       const digits = entered.split('');
       let isValid = true;
       for (let d of digits) {
@@ -723,14 +775,12 @@
       }
       
       if (isValid) {
-        // رمز درست است
         clearInterval(lockTimerInterval);
         lockTimerInterval = null;
         lockOverlay.classList.remove('show');
         document.getElementById('appContainer').style.display = 'block';
         initApp();
       } else {
-        // رمز اشتباه است → صفحه قفل می‌شود (از کار می‌افتد)
         lockError.textContent = '❌ رمز اشتباه است!';
         lockSystem(true);
       }
@@ -816,7 +866,6 @@
       
       renderMembers();
       updateStatusBar();
-      renderLogs();
       updateRanking();
     }
 
@@ -868,6 +917,7 @@
         masterMembers.forEach(m => {
           records[dateKey][m.id] = { status: 'present', delay: 0 };
         });
+        saveData();
       }
       return records[dateKey];
     }
@@ -920,9 +970,7 @@
             const rec = getCurrentRecord();
             if (!rec[id]) rec[id] = { status: 'present', delay: 0 };
             rec[id].status = rec[id].status === 'present' ? 'absent' : 'present';
-            renderMembers();
-            updateStatusBar();
-            updateRanking();
+            saveAndRender();
           });
         });
       }
@@ -937,9 +985,7 @@
           Object.keys(records).forEach(key => {
             delete records[key][id];
           });
-          renderMembers();
-          updateStatusBar();
-          updateRanking();
+          saveAndRender();
         });
       });
 
@@ -953,8 +999,7 @@
           const newName = prompt('نام جدید:', member.name);
           if (newName && newName.trim() !== '') {
             member.name = newName.trim();
-            renderMembers();
-            updateRanking();
+            saveAndRender();
           }
         });
       });
@@ -972,8 +1017,7 @@
             const val = parseInt(input.value);
             if (!isNaN(val) && val >= 0) {
               rec[id].delay = val;
-              renderMembers();
-              addLog('delay', `${masterMembers.find(m=>m.id===id).name} (${val} دقیقه تاخیر)`);
+              saveAndRender();
             } else {
               input.style.display = 'none';
               valueSpan.style.display = 'inline';
@@ -988,8 +1032,7 @@
               const val = parseInt(input.value);
               if (!isNaN(val) && val >= 0) {
                 rec[id].delay = val;
-                renderMembers();
-                addLog('delay', `${masterMembers.find(m=>m.id===id).name} (${val} دقیقه تاخیر)`);
+                saveAndRender();
               } else {
                 input.style.display = 'none';
                 valueSpan.style.display = 'inline';
@@ -1047,48 +1090,6 @@
       }
     }
 
-    function renderLogs() {
-      if (logs.length === 0) {
-        logContainer.innerHTML = `<div class="text-muted" style="padding:16px 0; text-align:center;">ثبتی وجود ندارد</div>`;
-        return;
-      }
-      const recent = logs.slice(-6).reverse();
-      let html = '';
-      recent.forEach(l => {
-        let label = '';
-        if (l.type === 'in') label = '✔ ورود';
-        else if (l.type === 'out') label = '✖ خروج';
-        else if (l.type === 'delay') label = '⏱ تاخیر';
-        else if (l.type === 'saveDay') label = '📅 ثبت روز';
-        else if (l.type === 'password') label = '🔑 تغییر رمز';
-        else label = '📌 گزارش';
-        html += `<div class="log-entry"><span>${l.name} — ${l.time}</span><span>${label}</span></div>`;
-      });
-      logContainer.innerHTML = html;
-    }
-
-    function addLog(type, name) {
-      const time = new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      logs.push({ type, name, time });
-      renderLogs();
-      if (type === 'in') {
-        statusDot.className = 'status-dot';
-        statusText.textContent = `${name} وارد شد`;
-      } else if (type === 'out') {
-        statusDot.className = 'status-dot inactive';
-        statusText.textContent = `${name} خارج شد`;
-      } else if (type === 'delay') {
-        statusText.textContent = `⏱ ${name}`;
-      } else if (type === 'saveDay') {
-        statusText.textContent = `✅ روز ${currentDateKey} ثبت شد`;
-      } else if (type === 'password') {
-        statusText.textContent = `🔑 رمز عبور تغییر کرد`;
-      } else {
-        statusText.textContent = `گزارش`;
-      }
-      setTimeout(() => updateStatusBar(), 1500);
-    }
-
     function getLastMember() {
       if (masterMembers.length === 0) { alert('هیچ عضوی وجود ندارد'); return null; }
       return masterMembers[masterMembers.length - 1];
@@ -1102,6 +1103,15 @@
       checkOutBtn.disabled = false;
       saveDayBtn.disabled = false;
       rankVisibilityToggle.style.display = 'flex';
+      
+      if (rankVisibleForMembers) {
+        rankSwitch.classList.add('active');
+        rankStatus.textContent = 'روشن';
+      } else {
+        rankSwitch.classList.remove('active');
+        rankStatus.textContent = 'خاموش';
+      }
+      
       renderMembers();
       updateStatusBar();
     }
@@ -1113,10 +1123,9 @@
       const rec = getCurrentRecord();
       if (!rec[m.id]) rec[m.id] = { status: 'present', delay: 0 };
       rec[m.id].status = 'present';
-      renderMembers();
-      addLog('in', m.name);
-      updateStatusBar();
-      updateRanking();
+      saveAndRender();
+      statusText.textContent = `${m.name} وارد شد`;
+      setTimeout(() => updateStatusBar(), 1500);
     });
 
     checkOutBtn.addEventListener('click', function() {
@@ -1126,10 +1135,9 @@
       const rec = getCurrentRecord();
       if (!rec[m.id]) rec[m.id] = { status: 'present', delay: 0 };
       rec[m.id].status = 'absent';
-      renderMembers();
-      addLog('out', m.name);
-      updateStatusBar();
-      updateRanking();
+      saveAndRender();
+      statusText.textContent = `${m.name} خارج شد`;
+      setTimeout(() => updateStatusBar(), 1500);
     });
 
     saveDayBtn.addEventListener('click', function() {
@@ -1148,9 +1156,10 @@
         return data && data.delay > 0;
       }).map(m => `${m.name} (${rec[m.id].delay} دقیقه)`).join('، ') || 'بدون تاخیر';
       
-      addLog('saveDay', `ثبت روز ${currentDateKey} ✅`);
+      statusText.textContent = `✅ روز ${currentDateKey} ثبت شد`;
       alert(`📋 ثبت روز ${currentDateKey}:\n✅ حاضر: ${present}\n❌ غایب: ${absent}\n⏱ تاخیر: ${delays}`);
       updateRanking();
+      setTimeout(() => updateStatusBar(), 1500);
     });
 
     addMemberBtn.addEventListener('click', function() {
@@ -1162,10 +1171,9 @@
       const rec = getCurrentRecord();
       rec[newId] = { status: 'present', delay: 0 };
       newMemberName.value = '';
-      renderMembers();
-      updateStatusBar();
-      addLog('in', name + ' (عضو جدید)');
-      updateRanking();
+      saveAndRender();
+      statusText.textContent = `${name} (عضو جدید) اضافه شد`;
+      setTimeout(() => updateStatusBar(), 1500);
     });
 
     resetAllBtn.addEventListener('click', function() {
@@ -1176,9 +1184,7 @@
         if (!rec[m.id]) rec[m.id] = { status: 'present', delay: 0 };
         rec[m.id].status = 'present';
       });
-      renderMembers();
-      updateStatusBar();
-      updateRanking();
+      saveAndRender();
     });
 
     removeAllBtn.addEventListener('click', function() {
@@ -1186,9 +1192,7 @@
       if (!confirm('همه اعضا حذف می‌شوند؟')) return;
       masterMembers = [];
       records[currentDateKey] = {};
-      renderMembers();
-      updateStatusBar();
-      updateRanking();
+      saveAndRender();
     });
 
     // ===== تغییر رمز =====
@@ -1216,8 +1220,10 @@
       adminPassword = newPass;
       currentPassDisplay.textContent = newPass;
       passwordModal.classList.remove('show');
-      addLog('password', 'رمز عبور توسط ادمین تغییر کرد');
+      saveData();
+      statusText.textContent = '🔑 رمز عبور تغییر کرد';
       alert('✅ رمز عبور با موفقیت تغییر کرد');
+      setTimeout(() => updateStatusBar(), 1500);
     });
 
     cancelPasswordBtn.addEventListener('click', function() {
@@ -1253,6 +1259,7 @@
       rankVisibleForMembers = !rankVisibleForMembers;
       this.classList.toggle('active');
       rankStatus.textContent = rankVisibleForMembers ? 'روشن' : 'خاموش';
+      saveData();
       
       if (!showRank) {
         showRank = true;
@@ -1371,7 +1378,6 @@
       if (e.key === 'Enter') checkLockPassword();
     });
 
-    // محدود کردن ورودی به ۳ رقم
     lockPassword.addEventListener('input', function() {
       this.value = this.value.replace(/[^0-9]/g, '').slice(0, 3);
     });
@@ -1379,9 +1385,11 @@
     // ===== تم =====
     document.querySelectorAll('.theme-dot').forEach(dot => {
       dot.addEventListener('click', function() {
-        document.body.className = 'theme-' + this.dataset.theme;
+        const theme = this.dataset.theme;
+        document.body.className = 'theme-' + theme;
         document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
         this.classList.add('active');
+        localStorage.setItem(STORAGE_KEYS.THEME, theme);
       });
     });
 
@@ -1398,7 +1406,6 @@
       updateDateFromSelectors();
       renderMembers();
       updateStatusBar();
-      renderLogs();
       updateRanking();
       currentPassDisplay.textContent = adminPassword;
       
@@ -1409,10 +1416,10 @@
     }
 
     // ===== اجرا =====
-    // لودینگ اول را مخفی کن
+    loadData();
+    
     setTimeout(() => {
       loadingOverlay.classList.add('hidden');
-      // نمایش لودینگ دوم (قفل)
       lockOverlay.classList.add('show');
       startLockTimer();
       lockPassword.focus();
